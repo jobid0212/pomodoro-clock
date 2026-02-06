@@ -23,10 +23,8 @@
                     <h1>Pomodoro Clock</h1>
                 </div>
                 <div class="timer-wrapper">
-                    <input type="text" id="durationInput" 
-                           pattern="[0-5][0-9]:[0-5][0-9]"
-                           placeholder="MM:SS">
-                    <button onclick="startTimer('study')">Start Countdown</button>
+                    <input type="number" id="minutesInput" placeholder="Min" min = "1">
+                    <button onclick="startTimer()">Start Countdown</button>
 
                     <div id="display">
                         00:00
