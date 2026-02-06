@@ -1,6 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request
 
-# Flask run --debug
 app = Flask(__name__)
     
 
