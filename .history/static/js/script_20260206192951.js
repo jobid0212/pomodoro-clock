@@ -11,6 +11,7 @@ function startTimer(phase) {
         return;
     }
     
+
     let durationInput;
     if (phase == 'study') {
         durationInput = 'studyDurationInput';
@@ -19,7 +20,7 @@ function startTimer(phase) {
     }
     const timeArray = document.getElementById(durationInput).value.split(':');
     
-    const seconds = convertToSeconds(timeArray);
+    const seconds = Number(timeArray[0]) * 60 + Number(timeArray[1]);
 
     const now = Date.now();
     const then = now + seconds * 1000;
@@ -59,30 +60,21 @@ function convertToSeconds(durationArray) {
     return Number(durationArray[0]) * 60 + Number(durationArray[1]);
 }
 
-/**
- * Function to make sure the inputed values are valid. Throws errors if not
- */
 function checkInputs() {
     const durationArrays =[document.getElementById('studyDurationInput').value.split(':'), 
                            document.getElementById('breakDurationInput').value.split(':')];
     for (const arr of durationArrays) {
 
-        // throws error if length of array is not 2
         if (arr.length != 2){
             alert('Enter correct format! (MM:SS)');
-            throw new Error("Input does not match format.");
+            throw new Error("Input does not match format.")
         } 
-
-        // throws error if letters were inputed
-        if (Number.isNaN(+arr[0]) || Number.isNaN(+arr[1])) {
-            alert('Enter numbers! (MM:SS)');
-            throw new Error("Input should be numbers");
-        }
         
-        // throws error if negatives were inputed
-        if (parseInt(arr[0]) < 0 || parseInt(arr[1]) < 1) {
-            alert('Enter positive numbers! (MM:SS)');
-            throw new Error("Input should be positive.");
+        for (const time of arr) {
+            if (time < 1){
+                alert('Enter positive number! (MM:SS)');
+                throw new Error("Input should be positive.")
+            } 
         }
     }
 }

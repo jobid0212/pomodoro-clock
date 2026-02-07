@@ -59,30 +59,19 @@ function convertToSeconds(durationArray) {
     return Number(durationArray[0]) * 60 + Number(durationArray[1]);
 }
 
-/**
- * Function to make sure the inputed values are valid. Throws errors if not
- */
 function checkInputs() {
     const durationArrays =[document.getElementById('studyDurationInput').value.split(':'), 
                            document.getElementById('breakDurationInput').value.split(':')];
     for (const arr of durationArrays) {
 
-        // throws error if length of array is not 2
         if (arr.length != 2){
             alert('Enter correct format! (MM:SS)');
-            throw new Error("Input does not match format.");
+            throw new Error("Input does not match format.")
         } 
-
-        // throws error if letters were inputed
-        if (Number.isNaN(+arr[0]) || Number.isNaN(+arr[1])) {
-            alert('Enter numbers! (MM:SS)');
-            throw new Error("Input should be numbers");
-        }
         
-        // throws error if negatives were inputed
-        if (parseInt(arr[0]) < 0 || parseInt(arr[1]) < 1) {
+        if (Number(arr[0]) < 0 || Number(arr[1]) < 1) {
             alert('Enter positive numbers! (MM:SS)');
-            throw new Error("Input should be positive.");
+            throw new Error("Input should be positive.")
         }
     }
 }
