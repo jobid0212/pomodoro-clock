@@ -3,17 +3,15 @@ let countdown;
 function startTimer(phase) {
     // "Kill Switch" to stop any running timers
     clearInterval(countdown);
-
-    let durationInput;
-    if (phase == 'study') {
-        durationInput = 'studyDurationInput';
+    let timeArray;
+    if (phase == "study") {
+        timeArray = document.getElementById('studyDurationInput').value.split(":");
     } else {
-        durationInput = 'breakDurationInput';
+        timeArray = document.getElementById('breakDurationInput').value.split(":");
     }
-
-    const timeArray = document.getElementById(durationInput).value.split(':');
+    
     console.log(timeArray);
-    if (timeArray.length != 2 ) return alert('Enter correct format! (MM:SS)');
+    if (timeArray.length != 2 ) return alert("Enter correct format! (MM:SS)");
     const seconds = Number(timeArray[0]) * 60 + Number(timeArray[1]);
 
     const now = Date.now();
@@ -25,12 +23,12 @@ function startTimer(phase) {
 
         if (secondsLeft < 0) {
             clearInterval(countdown);
-            if (phase == 'study'){
-                alert('Start Break!');
-                startTimer('break');
+            if (phase == "study"){
+                alert("Start Break!");
+                startTimer("break");
                 return;
             } else {
-                alert('Break Over!');
+                alert("Break Over!");
                 return;
             }
             
