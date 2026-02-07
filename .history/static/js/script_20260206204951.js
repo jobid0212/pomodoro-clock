@@ -1,8 +1,7 @@
 let countdown;
 
 /**
- * Method that starts the timer, updates it, and stops it when finished. If the parameter is 'study',
- * a break timer will start after the first timer ends.
+ * 
  * @param {string} phase  - The "phase" of the pomodoro session (study/break).
  * @returns {void}
  */
@@ -36,9 +35,6 @@ function startTimer(phase) {
 
         if (secondsLeft < 0) {
             clearInterval(countdown);
-
-            // starts "break" timer if "study" timer just ended, else if "break" timer
-            // just ended, alert that break is over and return.
             if (phase == 'study'){
                 alert('Start Break!');
                 startTimer('break');

@@ -1,10 +1,9 @@
 let countdown;
 
 /**
- * Method that starts the timer, updates it, and stops it when finished. If the parameter is 'study',
- * a break timer will start after the first timer ends.
+ * 
  * @param {string} phase  - The "phase" of the pomodoro session (study/break).
- * @returns {void}
+ * @returns 
  */
 function startTimer(phase) {
     // "Kill Switch" to stop any running timers
@@ -30,15 +29,11 @@ function startTimer(phase) {
     const then = now + seconds * 1000;
     displayTimeLeft(seconds);
     
-    // Timer decreases every second until secondsLeft reaches 0
     countdown = setInterval(function () {
         const secondsLeft = Math.round((then - Date.now()) / 1000);
 
         if (secondsLeft < 0) {
             clearInterval(countdown);
-
-            // starts "break" timer if "study" timer just ended, else if "break" timer
-            // just ended, alert that break is over and return.
             if (phase == 'study'){
                 alert('Start Break!');
                 startTimer('break');
@@ -47,6 +42,7 @@ function startTimer(phase) {
                 alert('Break Over!');
                 return;
             }
+            
         }
 
         displayTimeLeft(secondsLeft);
@@ -58,7 +54,6 @@ function startTimer(phase) {
  * Takes a parameter of seconds, converts them into a string of minutes and seconds, then
  * sets text of the 'display' element as that string (in MM:SS format).
  * @param {number} seconds The amount of seconds to display.
- * @returns {void}
  */
 function displayTimeLeft(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -73,7 +68,7 @@ function displayTimeLeft(seconds) {
  * Turns an array of strings into a total of seconds. The first index of the array is converted into minutes, 
  * the second index is converted into seconds.
  * @param {Array<string>} durationArray - An array of strings to be converted into minutes and seconds.
- * @returns {number} an amount of seconds.
+ * @returns an amount of seconds.
  */
 function convertToSeconds(durationArray) {
     return Number(durationArray[0]) * 60 + Number(durationArray[1]);
@@ -81,7 +76,6 @@ function convertToSeconds(durationArray) {
 
 /**
  * Function to make sure the inputed values are valid. Throws errors if not.
- * @returns {void}
  */
 function checkInputs() {
     const durationArrays =[document.getElementById('studyDurationInput').value.split(':'), 

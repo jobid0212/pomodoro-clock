@@ -1,8 +1,7 @@
 let countdown;
 
 /**
- * Method that starts the timer, updates it, and stops it when finished. If the parameter is 'study',
- * a break timer will start after the first timer ends.
+ * 
  * @param {string} phase  - The "phase" of the pomodoro session (study/break).
  * @returns {void}
  */
