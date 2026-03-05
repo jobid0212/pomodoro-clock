@@ -9,6 +9,8 @@ let countdown;
 function startTimer(phase) {
     // "Kill Switch" to stop any running timers
     clearInterval(countdown);
+    const finishWindow = document.getElementById('finishWindow');
+    const closeButton = document.getElementById('closeButton')
 
     try {
         checkInputs();
@@ -35,18 +37,25 @@ function startTimer(phase) {
         const secondsLeft = Math.round((then - Date.now()) / 1000);
 
         if (secondsLeft < 0) {
+            playSound('static/sounds/alert.mp3');
             clearInterval(countdown);
 
             // starts "break" timer if "study" timer just ended, else if "break" timer
             // just ended, alert that break is over and return.
-            if (phase == 'study'){
-                alert('Start Break!');
-                startTimer('break');
-                return;
-            } else {
-                alert('Break Over!');
-                return;
-            }
+            return new Promise((resolve) => {
+                finishWindow.showModal();
+                closeButton.addEventListener('click', () => {
+                    finishWindow.close();
+                    resolve();
+                    if (phase == 'study'){
+                        startTimer('break');
+                        return;
+                    } else {
+                        return;
+                    }
+                }, {once: true});
+
+            });
         }
 
         displayTimeLeft(secondsLeft);
@@ -106,4 +115,9 @@ function checkInputs() {
             throw new Error("Input should be positive.");
         }
     }
+}
+
+function playSound(soundPath) {
+    let sound = new Audio(soundPath);
+    sound.play();
 }
