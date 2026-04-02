@@ -74,7 +74,7 @@ function startTimer(phase) {
 /**
  * Takes a parameter of seconds, converts them into a string of minutes and seconds, then
  * sets text of the 'display' element as that string (in MM:SS format).
- * @param {number} seconds The amount of seconds to display.
+ * @param {number} seconds - The amount of seconds to display.
  * @returns {void}
  */
 function displayTimeLeft(seconds) {
@@ -118,13 +118,18 @@ function checkInputs() {
         }
         
         // throws error if negatives were inputed
-        if (parseInt(arr[0]) < 0 || parseInt(arr[1]) < 1) {
+        if (parseInt(arr[0]) < 0 || parseInt(arr[1]) < 0) {
             alert('Enter positive numbers! (MM:SS)');
             throw new Error("Input should be positive.");
         }
     }
 }
 
+/**
+ * Function to play specific sound when called.
+ * @param {string} soundPath - The filepath of the sound being played
+ * @returns {void}
+ */
 function playSound(soundPath) {
     let sound = new Audio(soundPath);
     sound.play();
