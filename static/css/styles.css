@@ -11,3 +11,24 @@
 #start-button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.progress-bar-wrapper {
+  max-width: 400px;
+  margin: 10px auto;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #e0e0e0; /* Light grey track */
+  border-radius: 8px;
+  overflow: hidden;
+  height: 24px;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%; /* Starts at 0 width */
+  background-color: #4caf50; /* Green fill */
+  transition: width 0.05s linear; /* Smooth visual update */
+}

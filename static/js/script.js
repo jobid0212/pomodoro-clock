@@ -9,8 +9,13 @@ let countdown;
 function startTimer(phase) {
     // "Kill Switch" to stop any running timers
     clearInterval(countdown);
+
     const finishWindow = document.getElementById('finishWindow');
-    const closeButton = document.getElementById('closeButton')
+    const closeButton = document.getElementById('closeButton');
+    const progressBar = document.getElementById('progressBar');
+
+    // reset progress bar to be empty
+    progressBar.style.width = '0%';
 
     try {
         checkInputs();
@@ -35,6 +40,9 @@ function startTimer(phase) {
     // Timer decreases every second until secondsLeft reaches 0
     countdown = setInterval(function () {
         const secondsLeft = Math.round((then - Date.now()) / 1000);
+        let percentage = (1 - secondsLeft / seconds) * 100;
+
+        progressBar.style.width = percentage + '%';
 
         if (secondsLeft < 0) {
             playSound('static/sounds/alert.mp3');
