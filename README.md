@@ -1,5 +1,5 @@
 # Pomodoro Clock
-### Video Demo:
+### Video Demo: https://youtu.be/bL5VMzm-mBs
 ## Description
 
 This project was made to help with the Pomodoro Technique. The Pomodoro Technique is a method of time management where a person will work on a task for 25 minutes, take a 5 minute break, then repeat the process another 3 times (for 4 times in total). After the 4th cycle, the person will take an extended 15-30 minute break. 
